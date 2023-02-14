@@ -1,6 +1,6 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        lenOne, lenTwo, ret = len(text1), len(text2), 0
+        lenOne, lenTwo = len(text1), len(text2)
         DP = [[0 for _ in range(lenOne + 1)] for _ in range(lenTwo + 1)]
 
         for row in range(1, lenTwo + 1):
@@ -9,5 +9,4 @@ class Solution:
                     DP[row][col] = DP[row - 1][col - 1] + 1
                 else:
                     DP[row][col] = max(DP[row - 1][col], DP[row][col - 1])
-                ret = max(ret, DP[row][col])
-        return(ret)
+        return(DP[-1][-1])
