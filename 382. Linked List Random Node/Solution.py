@@ -1,10 +1,13 @@
 class Solution:
     def __init__(self, head: Optional[ListNode]):
-        node, self.lst = head, []
-        while(node):
-            self.lst.append(node.val)
-            node = node.next
+        self.head = head
         
 
     def getRandom(self) -> int:
-        return(random.choice(self.lst))
+        scope, ret, cur = 1, 0, self.head
+        while(cur):
+            if(random.random() < (1 / scope)):
+                ret = cur.val
+            cur = cur.next
+            scope += 1
+        return(ret)
